@@ -2,7 +2,7 @@
   <div class="container">
     <input class="input" type="text" v-model="search" placeholder="Search by ingredient" />
 
-    <div class="recipe" v-for="recipe in getRecipe" :key="recipe.title">
+    <div class="recipe" v-for="(recipe, i) in getRecipe" :key="i">
       <a :href="recipe.href" :title="recipe.title"> 
         <img :src="recipe.thumbnail" /> 
         <h1>{{ recipe.title }}</h1>
