@@ -8,7 +8,7 @@
         <img :src="recipe.thumbnail" /> 
         <h1>{{ recipe.title }}</h1>
       </a>
-        <p><h4>Ingredients: </h4> {{ recipe.ingredients }}</p>
+        <h4>Ingredients: </h4> <p> {{ recipe.ingredients }} </p>
     </div>
   
   </div>
