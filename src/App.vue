@@ -47,13 +47,22 @@ export default {
 
 .recipe {
   display: inline-block;
-  margin: 50px 25px;
+  margin: 50px 15px;
   padding-bottom: 25px;
-  width: 450px;
+  width: 400px;
   border-bottom: 2px solid #333;
 }
 
 .recipe a, .recipe a:active, .recipe a:visited { color: #333;text-decoration: none; }
 .recipe a:hover { color: #fd6a04; text-decoration: underline;}
 .recipe img { max-width: 150px; width: 40%; max-height: 150px; height: 40%; border-radius: 15px; border: 1px solid #333;}
+
+@media only screen and (max-width: 600px) {
+  .recipe {
+  margin: 35px 7px;
+  padding-bottom: 20px;
+  max-width: 400px;
+  width: 85%;
+}
+}
 </style>
