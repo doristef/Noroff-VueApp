@@ -10,7 +10,7 @@ import recipes from './components/recipes.vue'
 export default {
   name: 'app',
   components: {
-    recipes
+    'Recipes' : recipes
   }
 }
 </script>

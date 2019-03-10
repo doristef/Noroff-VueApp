@@ -25,6 +25,8 @@ const corsURL = "https://cors-anywhere.herokuapp.com/"; // Needed for Unblocking
 const apiURL = "http://www.recipepuppy.com/api/"; // API to fetch from
 
 export default {
+  name: 'Recipes',
+  
   data() {
     return {
       recipes: [],
