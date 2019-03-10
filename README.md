@@ -21,4 +21,11 @@ Clone the project to your machine, cd into the folder and run " npm i " to insta
  
 ```
 
+Live
+---
+
+You can also see a live version at http://doristef.me/semester4/noroff-vueapp/
+
+
+
 ### Thanks and have fun!
