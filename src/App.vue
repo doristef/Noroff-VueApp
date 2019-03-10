@@ -30,16 +30,20 @@ export default {
   width: 100%;
   margin: 0 auto;
 }
-
+.form {
+    margin: 0 auto 50px auto;  
+}
 .input {
-  display: block;
-  margin: 0 auto 50px auto;  
-  width: 250px;
-  height: 20px;
+  margin: 10px;
+  display: inline-block;
   border: 1px solid #333;
   border-radius: 10px;
   padding: 5px;
 }
+
+.input-text { width: 250px; height: 20px; }
+.input-search { height: 30px; background: transparent;  }
+.input-search:hover { background: #fd6a04; cursor: pointer; }
 
 .recipe {
   display: inline-block;

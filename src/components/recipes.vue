@@ -1,8 +1,14 @@
 <template>
   <div class="container">
-    <input class="input" type="text" v-model="search" placeholder="Search by ingredient" />
-
-    <div class="recipe" v-for="(recipe, i) in getRecipe" :key="i">
+    <div class="form">
+      <h4> You can type in ingredients to find recipes in the list, or click the button to get more recipes with given ingredient</h4>
+      <p><i>You can search for multiple ingredients, just remember to put a colon (,) between!</i></p>
+      <input class="input input-text" type="text" v-model="search" placeholder="Search by ingredient" />
+      <button class="input input-search" type="button" v-on:click="getRecipe()">Search for more!</button>
+      <button class="input input-search" type="button" v-on:click="freshLoad()">Reset!</button>
+    </div>
+    <h2 v-if="loading">Loading....</h2>
+    <div v-else class="recipe" v-for="(recipe, i) in getRecipeFiltered" :key="i">
       <a :href="recipe.href" :title="recipe.title"> 
         <img :src="recipe.thumbnail" /> 
         <h1>{{ recipe.title }}</h1>
@@ -23,12 +29,13 @@ export default {
     return {
       recipes: [],
       errors: [],
-      search: ''
+      search: '',
+      loading: true
     }
   },
 
   computed: {
-    getRecipe() {
+    getRecipeFiltered() {
       return this.recipes.filter((recipe) => {
         return recipe.ingredients.toLowerCase()
         .indexOf(this.search.toLowerCase()) > -1;
@@ -36,14 +43,27 @@ export default {
     }
   },
 
-  created() {
-    axios.get(corsURL + apiURL)
-    .then(response => { this.recipes = response.data.results })
-    .catch(e => {
+  methods: {
+    getRecipe() {
+      this.loading = true;
+      axios.get(corsURL + apiURL + '?i=' + this.search)
+        .then(response => { this.recipes = response.data.results; this.loading = false; })
+        .catch(e => { this.errors.push(e) })
+      },
+
+    freshLoad() {
+      this.loading = true;
+      this.search = '';
+      axios.get(corsURL + apiURL)
+        .then(response => { this.recipes = response.data.results; this.loading = false; })
+        .catch(e => {
       this.errors.push(e)
     })
+    }
+  },
+
+  created() {
+    this.freshLoad();
   }
-
-
 }
 </script>
