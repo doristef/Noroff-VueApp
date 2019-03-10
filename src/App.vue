@@ -33,7 +33,7 @@ export default {
 
 .input {
   display: block;
-  margin: 50px auto;  
+  margin: 0 auto 50px auto;  
   width: 250px;
   height: 20px;
   border: 1px solid #333;

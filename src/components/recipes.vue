@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-
-    <input class="input" type="text" v-model="search" placeholder="Search for a recipe" />
+    <input class="input" type="text" v-model="search" placeholder="Search by ingredient" />
 
     <div class="recipe" v-for="recipe in getRecipe" :key="recipe.title">
       <a :href="recipe.href" :title="recipe.title"> 
@@ -31,7 +30,7 @@ export default {
   computed: {
     getRecipe() {
       return this.recipes.filter((recipe) => {
-        return recipe.title.toLowerCase()
+        return recipe.ingredients.toLowerCase()
         .indexOf(this.search.toLowerCase()) > -1;
       });
     }
