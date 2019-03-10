@@ -4,8 +4,8 @@
       <h4> You can type in ingredients to find recipes in the list, or click the button to get more recipes with given ingredient</h4>
       <p><i>You can search for multiple ingredients, just remember to put a colon (,) between!</i></p>
       <input class="input input-text" type="text" v-model="search" placeholder="Search by ingredient" />
-      <button class="input input-search" type="button" v-on:click="getRecipe()">Search for more!</button>
-      <button class="input input-search" type="button" v-on:click="freshLoad()">Reset!</button>
+      <button class="input input-search" type="button" @click="getRecipe()">Search for more!</button>
+      <button class="input input-search" type="button" @click="getRecipe(true)">Reset!</button>
     </div>
     <h2 v-if="loading">Loading....</h2>
     <div v-else class="recipe" v-for="(recipe, i) in getRecipeFiltered" :key="i">
@@ -44,26 +44,21 @@ export default {
   },
 
   methods: {
-    getRecipe() {
+    getRecipe: function(fresh) {
       this.loading = true;
+      if(fresh){ this.search = ''; }
+      this.apiCall();
+      },
+
+    apiCall: function() {
       axios.get(corsURL + apiURL + '?i=' + this.search)
         .then(response => { this.recipes = response.data.results; this.loading = false; })
         .catch(e => { this.errors.push(e) })
-      },
-
-    freshLoad() {
-      this.loading = true;
-      this.search = '';
-      axios.get(corsURL + apiURL)
-        .then(response => { this.recipes = response.data.results; this.loading = false; })
-        .catch(e => {
-      this.errors.push(e)
-    })
     }
   },
 
   created() {
-    this.freshLoad();
+    this.apiCall();
   }
 }
 </script>
