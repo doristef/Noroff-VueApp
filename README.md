@@ -26,6 +26,9 @@ Live
 
 You can also see a live version at http://doristef.me/semester4/noroff-vueapp/
 
+API
+---
 
+This application is built on Recipe Puppy API, http://www.recipepuppy.com/
 
 ### Thanks and have fun!
